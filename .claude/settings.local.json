@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import slideshow_endpoint\")",
+      "Bash(timeout 10 python3 slideshow_endpoint.py --host 127.0.0.1 --port 18765 --slides-dir /tmp/slides-test --init-samples)",
+      "Bash(mkdir -p /tmp/slides-test/lt-demo)",
+      "Bash(cp /tmp/slides-test/00-redstone.png /tmp/slides-test/lt-demo/)",
+      "Bash(curl -s http://127.0.0.1:18765/slides.json)",
+      "Bash(wait)",
+      "Bash(rm -rf /tmp/slides-test /tmp/up.png)"
+    ]
+  }
+}

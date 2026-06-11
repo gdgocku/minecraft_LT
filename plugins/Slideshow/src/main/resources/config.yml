@@ -1,0 +1,14 @@
+# Base URL of the slideshow endpoint server. Decks listed by <base>/decks.json
+# are discovered automatically and show up in /slideshow browse, so creating a
+# deck in the uploader UI is enough — no per-slideshow entry needed.
+endpoint-base-url: "http://127.0.0.1:8765"
+
+# Optional manual entries (e.g. for decks on another server). Screens are bound
+# in-game: /slideshow browse -> take the slideshow item -> right-click a
+# MediaPlayer screen. screen-uuid / screen-name are optional and only used as a
+# default target for /slideshow start.
+slideshows: {}
+#  my-slideshow:
+#    endpoint-url: "https://example.com/api/slides"
+#    polling-interval-seconds: 30
+#    loop: true

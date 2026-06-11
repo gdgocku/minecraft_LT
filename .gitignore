@@ -1,0 +1,72 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+.factorypath
+bin/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Third-party plugin clone (has its own git repo)
+plugins/MediaPlayer/
+
+# Minecraft server runtime (generated / environment-specific)
+servers/minecraft_LT/logs/
+servers/minecraft_LT/world/
+servers/minecraft_LT/world_nether/
+servers/minecraft_LT/world_the_end/
+servers/minecraft_LT/libraries/
+servers/minecraft_LT/runtime/
+servers/minecraft_LT/versions/
+servers/minecraft_LT/cache/
+servers/minecraft_LT/config/
+servers/minecraft_LT/*.jar
+servers/minecraft_LT/plugins/*.jar
+servers/minecraft_LT/plugins/.paper-remapped/
+servers/minecraft_LT/plugins/bStats/
+servers/minecraft_LT/plugins/spark/
+servers/minecraft_LT/plugins/MediaPlayer/
+servers/minecraft_LT/usercache.json
+servers/minecraft_LT/banned-ips.json
+servers/minecraft_LT/banned-players.json
+servers/minecraft_LT/whitelist.json
+servers/minecraft_LT/ops.json
+servers/minecraft_LT/eula.txt
+servers/minecraft_LT/server.properties
+servers/minecraft_LT/spigot.yml
+servers/minecraft_LT/bukkit.yml
+servers/minecraft_LT/help.yml
+servers/minecraft_LT/permissions.yml
+servers/minecraft_LT/commands.yml
+servers/minecraft_LT/version_history.json
+servers/minecraft_LT/map-color-cache.dat
+servers/minecraft_LT/.console_history
+
+# Python (slideshow-endpoint)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Slide content (runtime data, can be large)
+slideshow-endpoint/slides/

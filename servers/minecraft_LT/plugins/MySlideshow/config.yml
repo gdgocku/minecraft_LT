@@ -1,0 +1,5 @@
+# Decks from <base>/decks.json are discovered automatically and show up in
+# /slideshow browse (the deck made of files directly in slides/ is "default").
+endpoint-base-url: "http://127.0.0.1:8765"
+
+slideshows: {}
