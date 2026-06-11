@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Small HTTP endpoint for MySlideshow.
+Small HTTP endpoint for SlideShow.
 
 It serves:
 - /slides.json as [{"url": "...", "index": 0}, ...] (default deck = files directly in slides/)
@@ -10,7 +10,7 @@ It serves:
   subdirectory of the slides directory, so every configured slideshow in the
   plugin can point at its own deck.
 
-The generated image URLs include ?v=<mtime> because MySlideshow detects updates by
+The generated image URLs include ?v=<mtime> because SlideShow detects updates by
 comparing URL strings.
 """
 
@@ -198,7 +198,7 @@ def download_google_slides_pdf(raw_url: str) -> tuple[bytes, str, str]:
     export_url, slide_id = export
     request = urllib.request.Request(
         export_url,
-        headers={"User-Agent": "MySlideshowEndpoint/1.0"},
+        headers={"User-Agent": "SlideShowEndpoint/1.0"},
     )
     with urllib.request.urlopen(request, timeout=60) as response:
         content_type = response.headers.get("Content-Type", "").lower()
@@ -732,7 +732,7 @@ def png_chunk(kind: bytes, data: bytes) -> bytes:
 
 
 def parse_args(argv: Iterable[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Serve MySlideshow JSON and image files.")
+    parser = argparse.ArgumentParser(description="Serve SlideShow JSON and image files.")
     parser.add_argument("--host", default="0.0.0.0", help="Bind address. Default: 0.0.0.0")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT, help=f"Bind port. Default: {DEFAULT_PORT}")
     parser.add_argument("--slides-dir", type=Path, default=DEFAULT_SLIDES_DIR, help="Directory containing slide images.")

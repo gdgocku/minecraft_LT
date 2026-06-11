@@ -1,7 +1,7 @@
-package com.issan.myslideshow.slide;
+package com.issan.slideshow.slide;
 
-import com.issan.myslideshow.MySlideshowPlugin;
-import com.issan.myslideshow.mediaplayer.MediaPlayerBridge;
+import com.issan.slideshow.SlideShowPlugin;
+import com.issan.slideshow.mediaplayer.MediaPlayerBridge;
 import fr.xxathyx.mediaplayer.screen.Screen;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,7 +18,7 @@ import java.util.Optional;
 import java.util.logging.Level;
 
 public final class SlideShow {
-    private final MySlideshowPlugin plugin;
+    private final SlideShowPlugin plugin;
     private final MediaPlayerBridge bridge;
     private final SlideEndpointClient endpointClient;
     private SlideShowConfig config;
@@ -27,7 +27,7 @@ public final class SlideShow {
     private int currentIndex;
     private int pollingTaskId = -1;
 
-    public SlideShow(MySlideshowPlugin plugin, MediaPlayerBridge bridge, SlideEndpointClient endpointClient, SlideShowConfig config) {
+    public SlideShow(SlideShowPlugin plugin, MediaPlayerBridge bridge, SlideEndpointClient endpointClient, SlideShowConfig config) {
         this.plugin = plugin;
         this.bridge = bridge;
         this.endpointClient = endpointClient;

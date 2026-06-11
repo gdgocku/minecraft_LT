@@ -1,14 +1,14 @@
-package com.issan.myslideshow;
+package com.issan.slideshow;
 
-import com.issan.myslideshow.command.SlideShowCommand;
-import com.issan.myslideshow.listener.SlideShowListener;
-import com.issan.myslideshow.mediaplayer.MediaPlayerBridge;
-import com.issan.myslideshow.slide.SlideShowManager;
+import com.issan.slideshow.command.SlideShowCommand;
+import com.issan.slideshow.listener.SlideShowListener;
+import com.issan.slideshow.mediaplayer.MediaPlayerBridge;
+import com.issan.slideshow.slide.SlideShowManager;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class MySlideshowPlugin extends JavaPlugin {
+public final class SlideShowPlugin extends JavaPlugin {
     private NamespacedKey slideUrlKey;
     private NamespacedKey slideIndexKey;
     private NamespacedKey slideshowNameKey;

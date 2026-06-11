@@ -1,9 +1,9 @@
-package com.issan.myslideshow.gui;
+package com.issan.slideshow.gui;
 
-import com.issan.myslideshow.MySlideshowPlugin;
-import com.issan.myslideshow.slide.SlideItemFactory;
-import com.issan.myslideshow.slide.SlideShow;
-import com.issan.myslideshow.slide.SlideShowManager;
+import com.issan.slideshow.SlideShowPlugin;
+import com.issan.slideshow.slide.SlideItemFactory;
+import com.issan.slideshow.slide.SlideShow;
+import com.issan.slideshow.slide.SlideShowManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -18,7 +18,7 @@ public final class SlideBrowser {
     private final SlideShowManager manager;
     private final SlideItemFactory itemFactory;
 
-    public SlideBrowser(MySlideshowPlugin plugin, SlideShowManager manager) {
+    public SlideBrowser(SlideShowPlugin plugin, SlideShowManager manager) {
         this.manager = manager;
         this.itemFactory = new SlideItemFactory(plugin, manager.bridge());
     }

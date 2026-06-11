@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.issan</groupId>
-    <artifactId>myslideshow</artifactId>
+    <artifactId>slideshow</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
 
-    <name>MySlideshow</name>
+    <name>SlideShow</name>
 
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
@@ -60,7 +60,7 @@
                             <relocations>
                                 <relocation>
                                     <pattern>com.google.gson</pattern>
-                                    <shadedPattern>com.issan.myslideshow.libs.gson</shadedPattern>
+                                    <shadedPattern>com.issan.slideshow.libs.gson</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>

@@ -1,5 +1,5 @@
-name: MySlideshow
-main: com.issan.myslideshow.MySlideshowPlugin
+name: SlideShow
+main: com.issan.slideshow.SlideShowPlugin
 version: 0.1.0
 api-version: '1.21'
 depend: [MediaPlayer]
@@ -7,8 +7,8 @@ commands:
   slideshow:
     description: Browse and control MediaPlayer-backed image slideshows.
     usage: /slideshow <browse|menu|wand|start|stop|next|prev|goto|screen|reload>
-    permission: myslideshow.manage
+    permission: slideshow.manage
 permissions:
-  myslideshow.manage:
+  slideshow.manage:
     description: Allows managing slideshow screens.
     default: op

@@ -1,7 +1,7 @@
-package com.issan.myslideshow.slide;
+package com.issan.slideshow.slide;
 
-import com.issan.myslideshow.MySlideshowPlugin;
-import com.issan.myslideshow.mediaplayer.MediaPlayerBridge;
+import com.issan.slideshow.SlideShowPlugin;
+import com.issan.slideshow.mediaplayer.MediaPlayerBridge;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class SlideItemFactory {
-    private final MySlideshowPlugin plugin;
+    private final SlideShowPlugin plugin;
     private final MediaPlayerBridge bridge;
 
-    public SlideItemFactory(MySlideshowPlugin plugin, MediaPlayerBridge bridge) {
+    public SlideItemFactory(SlideShowPlugin plugin, MediaPlayerBridge bridge) {
         this.plugin = plugin;
         this.bridge = bridge;
     }

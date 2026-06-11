@@ -1,6 +1,6 @@
-# MySlideshow endpoint server
+# SlideShow endpoint server
 
-This small Python server provides the endpoint expected by the MySlideshow plugin:
+This small Python server provides the endpoint expected by the SlideShow plugin:
 
 ```json
 [{"url":"http://127.0.0.1:8765/images/00-redstone.png?v=123","index":0}]

@@ -1,4 +1,4 @@
-package com.issan.myslideshow.gui;
+package com.issan.slideshow.gui;
 
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;

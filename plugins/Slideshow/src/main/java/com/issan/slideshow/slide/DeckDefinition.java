@@ -1,4 +1,4 @@
-package com.issan.myslideshow.slide;
+package com.issan.slideshow.slide;
 
 public record DeckDefinition(String name, String title, String endpoint) {
     public String displayName() {

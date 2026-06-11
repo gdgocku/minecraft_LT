@@ -1,6 +1,6 @@
-package com.issan.myslideshow.mediaplayer;
+package com.issan.slideshow.mediaplayer;
 
-import com.issan.myslideshow.MySlideshowPlugin;
+import com.issan.slideshow.SlideShowPlugin;
 import fr.xxathyx.mediaplayer.Main;
 import fr.xxathyx.mediaplayer.api.MediaPlayerAPI;
 import fr.xxathyx.mediaplayer.image.renderer.ImageRenderer;
@@ -24,10 +24,10 @@ import java.util.UUID;
 import java.util.logging.Level;
 
 public final class MediaPlayerBridge {
-    private final MySlideshowPlugin plugin;
+    private final SlideShowPlugin plugin;
     private final ItemStacks itemStacks = new ItemStacks();
 
-    public MediaPlayerBridge(MySlideshowPlugin plugin) {
+    public MediaPlayerBridge(SlideShowPlugin plugin) {
         this.plugin = plugin;
     }
 

@@ -1,7 +1,7 @@
-package com.issan.myslideshow.slide;
+package com.issan.slideshow.slide;
 
-import com.issan.myslideshow.MySlideshowPlugin;
-import com.issan.myslideshow.mediaplayer.MediaPlayerBridge;
+import com.issan.slideshow.SlideShowPlugin;
+import com.issan.slideshow.mediaplayer.MediaPlayerBridge;
 import fr.xxathyx.mediaplayer.screen.Screen;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,14 +22,14 @@ import java.util.UUID;
 import java.util.logging.Level;
 
 public final class SlideShowManager {
-    private final MySlideshowPlugin plugin;
+    private final SlideShowPlugin plugin;
     private final MediaPlayerBridge bridge;
     private final SlideEndpointClient endpointClient = new SlideEndpointClient();
     private final Map<String, SlideShow> slideshows = new LinkedHashMap<>();
     private final Set<String> discoveredDecks = new HashSet<>();
     private String decksUrl;
 
-    public SlideShowManager(MySlideshowPlugin plugin, MediaPlayerBridge bridge) {
+    public SlideShowManager(SlideShowPlugin plugin, MediaPlayerBridge bridge) {
         this.plugin = plugin;
         this.bridge = bridge;
     }

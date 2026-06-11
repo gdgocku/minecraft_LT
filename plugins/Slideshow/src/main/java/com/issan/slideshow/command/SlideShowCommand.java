@@ -1,9 +1,9 @@
-package com.issan.myslideshow.command;
+package com.issan.slideshow.command;
 
-import com.issan.myslideshow.MySlideshowPlugin;
-import com.issan.myslideshow.gui.SlideBrowser;
-import com.issan.myslideshow.slide.SlideShow;
-import com.issan.myslideshow.slide.SlideShowManager;
+import com.issan.slideshow.SlideShowPlugin;
+import com.issan.slideshow.gui.SlideBrowser;
+import com.issan.slideshow.slide.SlideShow;
+import com.issan.slideshow.slide.SlideShowManager;
 import fr.xxathyx.mediaplayer.screen.Screen;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -22,11 +22,11 @@ import java.util.Optional;
 public final class SlideShowCommand implements CommandExecutor, TabCompleter {
     private static final List<String> SUBCOMMANDS = List.of("browse", "menu", "wand", "start", "stop", "next", "prev", "goto", "screen", "reload");
 
-    private final MySlideshowPlugin plugin;
+    private final SlideShowPlugin plugin;
     private final SlideShowManager manager;
     private final SlideBrowser browser;
 
-    public SlideShowCommand(MySlideshowPlugin plugin, SlideShowManager manager) {
+    public SlideShowCommand(SlideShowPlugin plugin, SlideShowManager manager) {
         this.plugin = plugin;
         this.manager = manager;
         this.browser = new SlideBrowser(plugin, manager);

@@ -1,4 +1,4 @@
-package com.issan.myslideshow.slide;
+package com.issan.slideshow.slide;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

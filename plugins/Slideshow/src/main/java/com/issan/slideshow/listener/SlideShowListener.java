@@ -1,10 +1,10 @@
-package com.issan.myslideshow.listener;
+package com.issan.slideshow.listener;
 
-import com.issan.myslideshow.MySlideshowPlugin;
-import com.issan.myslideshow.gui.SlideBrowser;
-import com.issan.myslideshow.gui.SlideBrowserHolder;
-import com.issan.myslideshow.slide.SlideShow;
-import com.issan.myslideshow.slide.SlideShowManager;
+import com.issan.slideshow.SlideShowPlugin;
+import com.issan.slideshow.gui.SlideBrowser;
+import com.issan.slideshow.gui.SlideBrowserHolder;
+import com.issan.slideshow.slide.SlideShow;
+import com.issan.slideshow.slide.SlideShowManager;
 import fr.xxathyx.mediaplayer.screen.Screen;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -32,12 +32,12 @@ public final class SlideShowListener implements Listener {
     private static final long WAND_COOLDOWN_MILLIS = 200;
     private static final int WAND_RANGE = 16;
 
-    private final MySlideshowPlugin plugin;
+    private final SlideShowPlugin plugin;
     private final SlideShowManager manager;
     private final SlideBrowser browser;
     private final Map<UUID, Long> wandLastUse = new HashMap<>();
 
-    public SlideShowListener(MySlideshowPlugin plugin, SlideShowManager manager) {
+    public SlideShowListener(SlideShowPlugin plugin, SlideShowManager manager) {
         this.plugin = plugin;
         this.manager = manager;
         this.browser = new SlideBrowser(plugin, manager);
