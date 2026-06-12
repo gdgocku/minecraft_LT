@@ -149,7 +149,7 @@ async function refresh() {
   const slides = await (await fetch(deckPrefix() + '/slides.json')).json();
   grid.innerHTML = '';
   for (const s of slides) {
-    const name = decodeURIComponent(new URL(s.url, location.href).pathname.replace(/^.*\\/images\\//, ''));
+    const name = decodeURIComponent(new URL(s.url, location.href).pathname.replace(/^.*\/images\//, ''));
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `<img src="${s.url}" alt="${name}">

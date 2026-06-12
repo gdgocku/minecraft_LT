@@ -9,8 +9,8 @@ if [[ ! -x "$JAVA_BIN" ]]; then
 fi
 
 JAVA_OPTS=(
-  "-Xms1G"
-  "-Xmx2G"
+  "-Xms${MC_XMS:-1G}"
+  "-Xmx${MC_XMX:-2G}"
   "-XX:+UseG1GC"
   "-XX:+ParallelRefProcEnabled"
   "-XX:MaxGCPauseMillis=200"
