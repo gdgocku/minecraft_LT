@@ -12,7 +12,13 @@ cd gcp && ./grant-operator-access.sh
 → `gcp/mc-lt-operator-key.json` が出来る（最小権限: VM作成/削除・`gs://minecraft_lt`の読み書きのみ。git管理外）。
 
 ### 2. 託す人の実機でリハーサル（最重要）
-託す人のマシン（gcloud ＋ このリポジトリ）で:
+**託す人はWindows**。先にこれらを用意する:
+- **WSL（推奨）か Git Bash**（bashスクリプトを動かすため）
+- **Google Cloud CLI (gcloud) のインストール** — WSLならLinux版、ネイティブなら公式インストーラ <https://cloud.google.com/sdk/docs/install>
+- リポジトリを **fresh clone**（`.gitattributes` により `.sh` がLFで入る）
+
+この環境準備・認証・SSH疎通の確認こそ、本人がいる今日やる意味。
+託す人のマシン（WSL/Git Bash）で、**鍵で認証**（個人アカウントでの `gcloud auth login` は不要）:
 ```
 gcloud auth activate-service-account --key-file=mc-lt-operator-key.json
 gcloud config set project gdgoc-kyoto-university

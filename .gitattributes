@@ -1,0 +1,11 @@
+# Cross-platform line endings.
+# Shell scripts MUST stay LF. A Windows stand-in runs them under Git Bash/WSL,
+# and vm-up.sh uploads startup-script.sh to a Linux VM — CRLF there breaks the
+# shebang and the VM won't boot. (After adding this file, run
+# `git add --renormalize .` once so already-committed files are stored as LF.)
+*.sh text eol=lf
+
+# Other text executed on Linux / parsed cross-platform
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf

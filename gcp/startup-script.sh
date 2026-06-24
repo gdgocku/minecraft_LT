@@ -37,6 +37,11 @@ fi
 gcloud storage rsync --recursive "${BUCKET}/slideshow" "${BASE}/slideshow"
 gcloud storage cp "${BUCKET}/ops/save-to-bucket.sh" /usr/local/bin/save-to-bucket.sh
 
+# Normalize line endings: if server/slideshow files were uploaded from a CRLF
+# (Windows) checkout, CRLF in start.sh / start-slides.sh would break the systemd
+# ExecStart. Strip CR from all shell scripts before use.
+find "${BASE}/server" "${BASE}/slideshow" -name '*.sh' -exec sed -i 's/\r$//' {} + 2>/dev/null || true
+
 chmod +x "${BASE}/server/start.sh" "${BASE}/slideshow/start-slides.sh" \
          /usr/local/bin/save-to-bucket.sh
 chmod -R u+x "${BASE}/server/runtime" 2>/dev/null || true

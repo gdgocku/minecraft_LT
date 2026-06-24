@@ -21,8 +21,8 @@ gcloud storage rsync --recursive --delete-unmatched-destination-objects \
   --exclude='^(__pycache__/)' \
   "${REPO_ROOT}/slideshow-endpoint" "${BUCKET}/slideshow"
 
-echo "==> Uploading startup script"
-gcloud storage cp ./startup-script.sh "${BUCKET}/ops/startup-script.sh"
-gcloud storage cp ./save-to-bucket.sh "${BUCKET}/ops/save-to-bucket.sh"
+echo "==> Uploading ops scripts (strip CR so a CRLF checkout can't break VM boot)"
+sed 's/\r$//' ./startup-script.sh | gcloud storage cp - "${BUCKET}/ops/startup-script.sh"
+sed 's/\r$//' ./save-to-bucket.sh | gcloud storage cp - "${BUCKET}/ops/save-to-bucket.sh"
 
 echo "Done."

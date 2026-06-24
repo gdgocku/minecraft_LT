@@ -5,9 +5,12 @@ set -euo pipefail
 cd "$(dirname "$0")"
 source ./config.sh
 
-# Always upload the latest ops scripts so the VM boots with current logic
-gcloud storage cp ./startup-script.sh "${BUCKET}/ops/startup-script.sh"
-gcloud storage cp ./save-to-bucket.sh "${BUCKET}/ops/save-to-bucket.sh"
+# Always upload the latest ops scripts so the VM boots with current logic.
+# Strip CR first: a Windows / Git Bash checkout is usually CRLF, and a CRLF
+# startup-script can't be executed by the VM (the shebang breaks) so nothing
+# gets restored. Piping through sed guarantees LF regardless of the operator OS.
+sed 's/\r$//' ./startup-script.sh | gcloud storage cp - "${BUCKET}/ops/startup-script.sh"
+sed 's/\r$//' ./save-to-bucket.sh | gcloud storage cp - "${BUCKET}/ops/save-to-bucket.sh"
 
 SPOT_FLAGS=()
 if [ "${PROVISIONING}" = "spot" ]; then

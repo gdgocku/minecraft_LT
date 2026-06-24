@@ -26,6 +26,13 @@ echo
 if ! gcloud iam service-accounts describe "${SA_EMAIL}" >/dev/null 2>&1; then
   gcloud iam service-accounts create "${SA_NAME}" \
     --display-name="Minecraft LT stand-in operator"
+  # SA creation is eventually consistent: the add-iam-policy-binding calls below
+  # can race ahead and fail with "does not exist". Wait until it's visible.
+  echo "Waiting for the service account to propagate..."
+  for _ in $(seq 1 12); do
+    gcloud iam service-accounts describe "${SA_EMAIL}" >/dev/null 2>&1 && break
+    sleep 5
+  done
 fi
 
 # 2. Project-level roles, kept as tight as the scripts allow:
