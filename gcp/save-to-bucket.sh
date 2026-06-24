@@ -33,4 +33,9 @@ if [ -d /opt/minecraft/slideshow/slides ]; then
     /opt/minecraft/slideshow/slides "${BUCKET}/slideshow/slides"
 fi
 
+# Persist Let's Encrypt certs so a new VM doesn't hit issuance rate limits
+if [ -d /var/lib/caddy/.local ]; then
+  tar -C /var/lib/caddy -czf - .local | gcloud storage cp - "${BUCKET}/ops/caddy-data.tar.gz"
+fi
+
 echo "Backup to ${BUCKET} complete: $(date -Is)"

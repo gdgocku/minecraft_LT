@@ -8,7 +8,18 @@ BUCKET="gs://minecraft_lt"
 BASE="/opt/minecraft"
 
 apt-get update -qq
-apt-get install -y -qq python3 python3-pil screen poppler-utils > /dev/null
+apt-get install -y -qq python3 python3-pil screen poppler-utils \
+  debian-keyring debian-archive-keyring apt-transport-https curl > /dev/null
+
+# Caddy (reverse proxy for HTTPS; .dev domains are HSTS-preloaded so the
+# slideshow UI must be served over TLS)
+if ! command -v caddy >/dev/null; then
+  curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | \
+    gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+  curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' \
+    > /etc/apt/sources.list.d/caddy-stable.list
+  apt-get update -qq && apt-get install -y -qq caddy > /dev/null
+fi
 
 mkdir -p "${BASE}"
 
@@ -93,5 +104,47 @@ EOF
 
 systemctl daemon-reload
 systemctl enable --now minecraft slideshow mc-backup.timer
+
+# --- Point mc.issan.dev at this VM (DNS-only record, no proxy = no latency).
+# Credentials live in the private bucket: ops/cloudflare.env defines CF_TOKEN.
+if gcloud storage cp "${BUCKET}/ops/cloudflare.env" /run/cloudflare.env 2>/dev/null; then
+  source /run/cloudflare.env
+  HOSTNAME_FQDN="mc.issan.dev"
+  MYIP=$(curl -s -H 'Metadata-Flavor: Google' \
+    'http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/access-configs/0/external-ip')
+  ZONE_ID=$(curl -s -H "Authorization: Bearer ${CF_TOKEN}" \
+    'https://api.cloudflare.com/client/v4/zones?name=issan.dev' | \
+    python3 -c 'import json,sys; print(json.load(sys.stdin)["result"][0]["id"])')
+  RECORD_ID=$(curl -s -H "Authorization: Bearer ${CF_TOKEN}" \
+    "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records?type=A&name=${HOSTNAME_FQDN}" | \
+    python3 -c 'import json,sys; r=json.load(sys.stdin)["result"]; print(r[0]["id"] if r else "")')
+  BODY=$(printf '{"type":"A","name":"%s","content":"%s","ttl":60,"proxied":false}' "${HOSTNAME_FQDN}" "${MYIP}")
+  if [ -n "${RECORD_ID}" ]; then
+    curl -s -X PUT -H "Authorization: Bearer ${CF_TOKEN}" -H 'Content-Type: application/json' \
+      "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records/${RECORD_ID}" -d "${BODY}" > /dev/null
+  else
+    curl -s -X POST -H "Authorization: Bearer ${CF_TOKEN}" -H 'Content-Type: application/json' \
+      "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records" -d "${BODY}" > /dev/null
+  fi
+  rm -f /run/cloudflare.env
+  echo "==> DNS: ${HOSTNAME_FQDN} -> ${MYIP}"
+else
+  echo "==> No cloudflare.env in bucket; skipping DNS update"
+fi
+
+# --- HTTPS for the slideshow UI via Caddy + Let's Encrypt.
+# Certs are persisted in the bucket so VM recreation doesn't re-issue
+# (Let's Encrypt limits duplicate certs to 5/week).
+mkdir -p /var/lib/caddy
+if gcloud storage objects describe "${BUCKET}/ops/caddy-data.tar.gz" >/dev/null 2>&1; then
+  gcloud storage cp "${BUCKET}/ops/caddy-data.tar.gz" - | tar -C /var/lib/caddy -xzf -
+  chown -R caddy:caddy /var/lib/caddy
+fi
+cat > /etc/caddy/Caddyfile <<'EOF'
+mc.issan.dev {
+    reverse_proxy localhost:8765
+}
+EOF
+systemctl restart caddy
 
 echo "==> Startup complete: $(date -Is)"

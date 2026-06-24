@@ -129,9 +129,10 @@ def build_slide_json(
 
 
 def request_origin(handler: BaseHTTPRequestHandler) -> str:
+    scheme = handler.headers.get("X-Forwarded-Proto", "http")
     host = handler.headers.get("Host")
     if host:
-        return f"http://{host}"
+        return f"{scheme}://{host}"
     server = handler.server
     host_name = server.server_address[0]
     if host_name in {"", "0.0.0.0", "::"}:

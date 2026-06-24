@@ -1,10 +1,10 @@
 # Minecraft server setup
 
-This directory is prepared as a Paper 26.1.2 server.
+This directory is prepared as a Paper 26.2 server.
 
 ## Files
 
-- `paper.jar`: Paper 26.1.2 build 69
+- `paper.jar`: Paper 26.2 build 24
 - `runtime/jdk-25.0.3+9/`: local Java 25 runtime used by `start.sh`
 - `plugins/MediaPlayer.jar`
 - `plugins/MySlideshow-0.1.0-dev.jar`

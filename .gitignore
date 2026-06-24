@@ -70,3 +70,6 @@ venv/
 
 # Slide content (runtime data, can be large)
 slideshow-endpoint/slides/
+
+# GCP operator service-account key (handed out privately, never commit)
+gcp/*-key.json
